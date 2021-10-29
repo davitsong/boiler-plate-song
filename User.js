@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        trim: true,
+        trim: true,   //공백가능
         unique: 1
     },
     password: {
@@ -21,18 +21,18 @@ const userSchema = mongoose.Schema({
         maxlength: 50
     },
     role: {
-        type: Number,
+        type: Number,   //0 일반유저 1관리자
         default: 0
     },
     image: String,
     token: {
-        type: String
+        type: String    //유효성
     },
     tokenExp: {
-        type: Number
+        type: Number    //유효기간
         }
-    })
+})
 
-const User = mongoose.model('User',userSchema)
+const User = mongoose.model('User',userSchema)           // userSchema로 User model 생성
 
-module.exports={User}
+module.exports={User}    //다른파일에서 사용가능
