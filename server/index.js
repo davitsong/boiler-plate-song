@@ -1,6 +1,6 @@
 const express = require('express')         //express module 가져옴
 const app = express()
-const port = 5000                          //5000번 서버 
+
 
 const bodyParser = require('body-parser')
 const cookieParser = require("cookie-parser")
@@ -29,7 +29,12 @@ mongoose.connect(config.mongoURI,{
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!aaf')
+  res.send('Hello World!~~')
+})
+
+app.get('/api/hello',(req,res)=> {
+  
+  res.send("안녕하세요")
 })
 
 app.post('/api/users/register',(req,res)=>{      
@@ -46,7 +51,7 @@ app.post('/api/users/register',(req,res)=>{
   })
 })
 
-
+const port = 5000                          //5000번 서버 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
@@ -88,7 +93,7 @@ app.post('/api/users/login',(req,res) => {
 })
 
 app.get('/api/users/auth',auth,(req,res)=>{
-  //여기까지 미들웨어를 통과해 왔다는 얘기는 Authetication이 True
+  //여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 True
   res.status(200).json({
     _id: req.user._id,
     isAdmin: req.user.role == 0 ? false : true,
