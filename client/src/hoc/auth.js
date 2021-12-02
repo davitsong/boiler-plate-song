@@ -1,7 +1,7 @@
 import { Axios } from 'axios';
-import { response } from 'express';
+//import { response } from 'express';
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redx';
+import {useDispatch} from 'react-redux';
 import {auth} from '../_actions/user_action';
 
 export default function(SpecificComponent, option, adiminRoute = null){
@@ -17,7 +17,7 @@ export default function(SpecificComponent, option, adiminRoute = null){
 
         useEffect(()=> {
 
-            dispatch(auth()).then(repose => {
+            dispatch(auth()).then(response => {
                 console.log(response)
                 //로그인 하지 않은 상태
                 if(!response.payload.isAuth){
@@ -26,11 +26,11 @@ export default function(SpecificComponent, option, adiminRoute = null){
                     }
                 }else{
                     //로그인 한 상태
-                    if(adiminRoute&&!response.payload.isAdmin){
+                    if(adiminRoute && !response.payload.isAdmin){
                         props.history.push('/')
-                    }else{//로그인한유저가register로 들어갈려고할때 
-                        if(option)
-                        props.history.push('/')
+                    }else{//로그인한유저가register or login로 들어갈려고할때 
+                        if(option===false)
+                            props.history.push('/')
                     }
 
                 }
