@@ -2,7 +2,7 @@ import { Axios } from 'axios';
 //import { response } from 'express';
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {auth} from '../_actions/user_action';
+import {auth} from '../_actions/user_actions';
 
 export default function(SpecificComponent, option, adiminRoute = null){
 
